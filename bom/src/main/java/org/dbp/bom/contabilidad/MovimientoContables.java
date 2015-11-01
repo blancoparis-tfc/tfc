@@ -6,25 +6,18 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.TableGenerator;
 
 import org.dbp.bom.contabilidad.enums.TipoMovimientoContable;
 
 @SuppressWarnings("serial")
 @Entity
-public class LineasAsiento implements Serializable{
+public class MovimientoContables implements Serializable{
 
+	
 	@Id
-	@TableGenerator(name = "LINEA_ASIENTOS_GEN",
-    table = "SECUENCIAS2", pkColumnName = "SEQ_NAME",
-    valueColumnName = "SEQ_LINEA_ASIENTO",  pkColumnValue = "SEQUENCE"
-    ,allocationSize=1,initialValue=1000)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "LINEA_ASIENTOS_GEN")
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name="cuenta")
@@ -33,20 +26,10 @@ public class LineasAsiento implements Serializable{
 	private TipoMovimientoContable tipoMovimientoContable;
 	
 	private BigDecimal importe;
-	@ManyToOne
-	@JoinColumn(name="asientoId")
-	private Asientos asiento;
+
+	private Long asiento;
 	
 	private String concepto;
-	
-
-	public String getConcepto() {
-		return concepto;
-	}
-
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
-	}
 
 	public Long getId() {
 		return id;
@@ -81,15 +64,21 @@ public class LineasAsiento implements Serializable{
 		this.importe = importe;
 	}
 
-	public Asientos getAsiento() {
+	public Long getAsiento() {
 		return asiento;
 	}
 
-	public void setAsiento(Asientos asiento) {
+	public void setAsiento(Long asiento) {
 		this.asiento = asiento;
 	}
-	
-	
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
 	
 	
 }

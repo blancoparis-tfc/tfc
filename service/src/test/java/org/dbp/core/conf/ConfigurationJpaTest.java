@@ -1,10 +1,13 @@
 package org.dbp.core.conf;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.dbp.bom.clientes.localizacion.ComunidadAutonoma;
+import org.dbp.bom.clientes.localizacion.Pais;
+import org.dbp.bom.clientes.localizacion.Provincia;
 import org.dbp.bom.contabilidad.Asientos;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +31,12 @@ public class ConfigurationJpaTest {
 		Asientos asiento=em.find(Asientos.class, 1L);
 		assertEquals("El id del usuario 1",new Long(1L),asiento.getId());
 		assertEquals("Validamos la descripcion","prueba1",asiento.getDescripcion());
+		Pais pais=em.find(Pais.class, "AF");
+		System.out.println(pais);
+		ComunidadAutonoma comunidad = em.find(ComunidadAutonoma.class, 1L);
+		System.out.println(comunidad);
+		Provincia provincia = em.find(Provincia.class, 2);
+		System.out.println(provincia);
 	}
 	
 }

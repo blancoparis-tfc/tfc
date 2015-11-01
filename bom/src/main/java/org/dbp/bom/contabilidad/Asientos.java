@@ -3,6 +3,7 @@ package org.dbp.bom.contabilidad;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Asientos implements Serializable{
 	private Long id;
 	
 	private String descripcion;
-	@OneToMany(mappedBy="asiento")
+	@OneToMany(mappedBy="asiento",orphanRemoval=true,cascade={CascadeType.ALL})
 	private List<LineasAsiento> lineas;
 
 	public Long getId() {
