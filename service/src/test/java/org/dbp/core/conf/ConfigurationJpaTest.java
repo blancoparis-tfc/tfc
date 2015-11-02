@@ -5,10 +5,10 @@ import static org.junit.Assert.assertEquals;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.dbp.bom.clientes.localizacion.ComunidadAutonoma;
-import org.dbp.bom.clientes.localizacion.Pais;
-import org.dbp.bom.clientes.localizacion.Provincia;
 import org.dbp.bom.contabilidad.Asientos;
+import org.dbp.bom.personas.localizacion.ComunidadAutonoma;
+import org.dbp.bom.personas.localizacion.Pais;
+import org.dbp.bom.personas.localizacion.Provincia;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

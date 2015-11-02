@@ -1,4 +1,4 @@
-package org.dbp.bom.clientes.localizacion;
+package org.dbp.bom.personas.localizacion;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

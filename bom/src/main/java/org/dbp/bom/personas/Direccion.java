@@ -1,4 +1,4 @@
-package org.dbp.bom.clientes;
+package org.dbp.bom.personas;
 
 import java.io.Serializable;
 

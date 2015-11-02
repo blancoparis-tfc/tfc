@@ -1,4 +1,4 @@
-package org.dbp.bom.clientes.enums;
+package org.dbp.bom.personas.enums;
 
 public enum TipoDeIdentificadorFiscal {
 	DNI,CIF

@@ -1,4 +1,4 @@
-package org.dbp.bom.clientes;
+package org.dbp.bom.personas;
 
 
 import java.io.Serializable;
@@ -13,14 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.dbp.bom.clientes.enums.TipoDeIdentificadorFiscal;
-import org.dbp.bom.clientes.localizacion.Municipio;
-import org.dbp.bom.clientes.localizacion.Pais;
-import org.dbp.bom.clientes.localizacion.Provincia;
+import org.dbp.bom.personas.enums.TipoDeIdentificadorFiscal;
+import org.dbp.bom.personas.localizacion.Municipio;
+import org.dbp.bom.personas.localizacion.Pais;
+import org.dbp.bom.personas.localizacion.Provincia;
 
 @SuppressWarnings("serial")
 @Entity
-public class Cliente implements Serializable{
+public class Persona implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;
