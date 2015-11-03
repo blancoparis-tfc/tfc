@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.dbp.bom.contabilidad.Asientos;
 import org.dbp.bom.personas.localizacion.ComunidadAutonoma;
+import org.dbp.bom.personas.localizacion.Municipio;
 import org.dbp.bom.personas.localizacion.Pais;
 import org.dbp.bom.personas.localizacion.Provincia;
 import org.junit.Test;
@@ -37,6 +38,8 @@ public class ConfigurationJpaTest {
 		System.out.println(comunidad);
 		Provincia provincia = em.find(Provincia.class, 2);
 		System.out.println(provincia);
+		Municipio municipio=em.find(Municipio.class,1L);
+		System.out.println(municipio);
 	}
 	
 }
