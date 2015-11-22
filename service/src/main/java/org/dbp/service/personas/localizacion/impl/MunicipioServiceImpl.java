@@ -19,7 +19,6 @@ public class MunicipioServiceImpl extends GenericServiceImpl<Municipio,Long> imp
 
 	@Override
 	public Municipio obtenerMunicipio(String nombre) {
-		// TODO Auto-generated method stub
 		return this.dao.obtenerMunicipio(nombre);
 	}
 

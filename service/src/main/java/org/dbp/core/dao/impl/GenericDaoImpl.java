@@ -24,6 +24,14 @@ public class GenericDaoImpl <E extends Serializable,ID> implements GenericDao<E,
 		super();
 		this.clazzE = clazzE;
 	}
+	
+	
+
+	public Class<E> getClazzE() {
+		return clazzE;
+	}
+
+
 
 	public E obtenerId(ID id){
 		return em.find(clazzE, id);

@@ -21,6 +21,7 @@ import org.dbp.bom.personas.localizacion.Provincia;
 @SuppressWarnings("serial")
 @Entity
 public class Persona implements Serializable{
+	
 	@Id
 	@GeneratedValue
 	private Long id;

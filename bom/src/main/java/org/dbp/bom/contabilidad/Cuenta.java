@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @SuppressWarnings("serial")
 @Entity
 public class Cuenta implements Serializable {
-	
+
 	@Id
 	private String cuenta;
 

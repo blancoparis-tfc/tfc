@@ -26,8 +26,8 @@ public class MunicipioDaoImpl extends GenericDaoImpl<Municipio,Long> implements 
 	@Override
 	public Municipio obtenerMunicipio(String nombre){
 		CriteriaBuilder cb=em.getCriteriaBuilder();
-		CriteriaQuery<Municipio> criteria=cb.createQuery(Municipio.class);
-		Root<Municipio> from=criteria.from(Municipio.class);
+		CriteriaQuery<Municipio> criteria=cb.createQuery(getClazzE());
+		Root<Municipio> from=criteria.from(getClazzE());
 		Predicate condMunicipio= cb.upper(from.get("municipio")).in(nombre.toUpperCase());
 		TypedQuery<Municipio> query=em.createQuery(criteria.select(from).where(condMunicipio));
 		return query.getSingleResult();

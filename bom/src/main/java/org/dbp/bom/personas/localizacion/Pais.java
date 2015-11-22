@@ -1,5 +1,7 @@
 package org.dbp.bom.personas.localizacion;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,8 +12,9 @@ import javax.persistence.Id;
  * @author david
  *
  */
+@SuppressWarnings("serial")
 @Entity
-public class Pais {
+public class Pais implements Serializable{
 
 	@Id
 	@Column(length=2)
