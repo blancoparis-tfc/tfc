@@ -14,7 +14,7 @@ public class Provincia implements Serializable{
 	@Id
 	@Column(length=2)
 	private Integer id;
-	
+	@Column(updatable=false,insertable=false)
 	private String nombre;
 	
 	@ManyToOne

@@ -10,6 +10,9 @@ subprojects{
   }
 
   dependencies {
+  	// Commons
+  	compile	'org.apache.commons:commons-lang3:3.1'
+
     // Spring
     compile 'org.springframework:spring-context:4.2.0.RELEASE'
  	compile 'org.springframework:spring-orm:4.2.0.RELEASE'

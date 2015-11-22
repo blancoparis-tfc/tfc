@@ -2,6 +2,7 @@ package org.dbp.bom.personas.localizacion;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,9 +13,10 @@ public class Municipio implements Serializable{
 	
 	@Id
 	private Long id;
+	@Column(updatable=false,insertable=false)
 	private String municipio;
-	@ManyToOne
-	@JoinColumn(name="provinciaId")
+	@ManyToOne()
+	@JoinColumn(name="provinciaId",updatable=false,insertable=false)
 	private Provincia provincia;
 
 	public Provincia getProvincia() {

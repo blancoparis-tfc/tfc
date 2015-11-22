@@ -1,6 +1,6 @@
 package org.dbp.service.contabilidad;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -58,5 +58,15 @@ public class AsientosServiceTest {
 		assertEquals("Linea de importe",1000L,asiento.getLineas().get(0).getImporte().intValue());
 		assertEquals("Concepto de la linea","Prueba",asiento.getLineas().get(0).getConcepto());
 	}
+	@Commit
+	@Test
+	public void test004eliminar(){
+		asientoService.eliminar(asientoService.obtenerId(1001L));
+	}
 	
+	@Test
+	public void test005Recuperar(){
+		Asientos asiento = asientoService.obtenerId(1001L);
+		assertNull("No se espera el asiento por que ha sido borrado.",asiento);
+	}
 }
