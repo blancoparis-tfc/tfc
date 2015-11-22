@@ -17,19 +17,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MunicipioDaoImpl extends GenericDaoImpl<Municipio,Long> implements MunicipioDao{
 
-	@PersistenceContext private EntityManager em;
+	@PersistenceContext private EntityManager entityManager;
 	
 	public MunicipioDaoImpl() {
 		super(Municipio.class);
 	}
 
 	@Override
-	public Municipio obtenerMunicipio(String nombre){
-		CriteriaBuilder cb=em.getCriteriaBuilder();
-		CriteriaQuery<Municipio> criteria=cb.createQuery(getClazzE());
-		Root<Municipio> from=criteria.from(getClazzE());
-		Predicate condMunicipio= cb.upper(from.get("municipio")).in(nombre.toUpperCase());
-		TypedQuery<Municipio> query=em.createQuery(criteria.select(from).where(condMunicipio));
+	public Municipio obtenerMunicipio(final String nombre){
+		final CriteriaBuilder criteriaBuilder=entityManager.getCriteriaBuilder();
+		final CriteriaQuery<Municipio> criteria=criteriaBuilder.createQuery(getClazzE());
+		final Root<Municipio> from=criteria.from(getClazzE());
+		final Predicate condMunicipio= criteriaBuilder.upper(from.get("municipio")).in(nombre.toUpperCase());
+		final TypedQuery<Municipio> query=entityManager.createQuery(criteria.select(from).where(condMunicipio));
 		return query.getSingleResult();
 	}
 }

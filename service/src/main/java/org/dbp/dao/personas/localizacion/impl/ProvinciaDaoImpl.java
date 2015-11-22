@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProvinciaDaoImpl extends GenericDaoImpl<Provincia,Long> implements ProvinciaDao{
 
-	@PersistenceContext private EntityManager em;
+	@PersistenceContext private EntityManager entityManager;
 	
 	public ProvinciaDaoImpl() {
 		super(Provincia.class);
@@ -24,12 +24,12 @@ public class ProvinciaDaoImpl extends GenericDaoImpl<Provincia,Long> implements 
 
 	
 	@Override
-	public Provincia obtenerProvincia(String nombre){
-		CriteriaBuilder cb=em.getCriteriaBuilder();
-		CriteriaQuery<Provincia> criteria=cb.createQuery(getClazzE());
-		Root<Provincia> from=criteria.from(getClazzE());
-		Predicate condMunicipio= cb.upper(from.get("nombre")).in(nombre.toUpperCase());
-		TypedQuery<Provincia> query=em.createQuery(criteria.select(from).where(condMunicipio));
+	public Provincia obtenerProvincia(final String nombre){
+		final CriteriaBuilder criteriaBuilder=entityManager.getCriteriaBuilder();
+		final CriteriaQuery<Provincia> criteria=criteriaBuilder.createQuery(getClazzE());
+		final Root<Provincia> from=criteria.from(getClazzE());
+		final Predicate condMunicipio= criteriaBuilder.upper(from.get("nombre")).in(nombre.toUpperCase());
+		final TypedQuery<Provincia> query=entityManager.createQuery(criteria.select(from).where(condMunicipio));
 		return query.getSingleResult();
 	}
 }

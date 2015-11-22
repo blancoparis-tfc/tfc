@@ -5,6 +5,6 @@ import org.dbp.core.dao.GenericDao;
 
 public interface MunicipioDao extends GenericDao<Municipio,Long>{
 
-	public  Municipio obtenerMunicipio(String nombre);
+	public Municipio obtenerMunicipio(String nombre); //NOPMD
 
 }

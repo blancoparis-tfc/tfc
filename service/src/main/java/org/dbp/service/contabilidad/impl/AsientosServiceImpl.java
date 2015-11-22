@@ -9,13 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AsientosServiceImpl extends GenericServiceImpl<Asientos,Long> implements AsientosService {
-
-	private AsientosDao dao;
 	
 	@Autowired
-	public AsientosServiceImpl(AsientosDao dao) {
+	public AsientosServiceImpl(final AsientosDao dao) {
 		super(dao);
-		this.dao=dao;
+
 	}
 
 }

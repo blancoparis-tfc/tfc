@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class MunicipioServiceImpl extends GenericServiceImpl<Municipio,Long> implements MunicipioService{
 
-	private MunicipioDao dao;
+	private final MunicipioDao dao;
 	
 	@Autowired
-	public MunicipioServiceImpl(MunicipioDao dao) {
+	public MunicipioServiceImpl(final MunicipioDao dao) {
 		super(dao);
 		this.dao=dao;
 	}
 
 	@Override
-	public Municipio obtenerMunicipio(String nombre) {
+	public Municipio obtenerMunicipio(final String nombre) {
 		return this.dao.obtenerMunicipio(nombre);
 	}
 

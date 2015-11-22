@@ -14,46 +14,43 @@ import org.dbp.core.dao.GenericDao;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(rollbackFor=Exception.class)
-public class GenericDaoImpl <E extends Serializable,ID> implements GenericDao<E,ID>{
+public class GenericDaoImpl <E extends Serializable,Id> implements GenericDao<E,Id>{
 
-	@PersistenceContext private EntityManager em;
+	@PersistenceContext 
+	private EntityManager entityManager;
 	
-	private Class<E> clazzE;
+	private final Class<E> clazzE;
 
-	public GenericDaoImpl(Class<E> clazzE) {
+	public GenericDaoImpl(final Class<E> clazzE) {
 		super();
 		this.clazzE = clazzE;
 	}
-	
-	
 
 	public Class<E> getClazzE() {
 		return clazzE;
 	}
 
-
-
-	public E obtenerId(ID id){
-		return em.find(clazzE, id);
+	public E obtenerId(final Id identificador){
+		return entityManager.find(clazzE, identificador);
 	}
 
-	public void eliminar(E entidad){
-		em.remove(entidad);
+	public void eliminar(final E entidad){
+		entityManager.remove(entidad);
 	}
 	
-	public void crear(E entidad){
-		em.persist(entidad);
+	public void crear(final E entidad){
+		entityManager.persist(entidad);
 	}
 	
-	public E actualizar(E actualizar){
-		return em.merge(actualizar);
+	public E actualizar(final E actualizar){
+		return entityManager.merge(actualizar);
 	}
 	
 	public List<E> obtenerTodos(){
-		CriteriaBuilder cb=em.getCriteriaBuilder();
-		CriteriaQuery<E> criteria=cb.createQuery(clazzE);
-		Root<E> from=criteria.from(clazzE);
-		TypedQuery<E> query=em.createQuery(criteria.select(from));
+		final CriteriaBuilder criteriaBuilde=entityManager.getCriteriaBuilder();
+		final CriteriaQuery<E> criteria=criteriaBuilde.createQuery(clazzE);
+		final Root<E> from=criteria.from(clazzE);
+		final TypedQuery<E> query=entityManager.createQuery(criteria.select(from));
 		return query.getResultList();
 	}
 

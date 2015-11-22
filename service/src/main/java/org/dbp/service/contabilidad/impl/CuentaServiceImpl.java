@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class CuentaServiceImpl extends GenericServiceImpl<Cuenta,String> implements CuentaService{
 	
 	@Autowired
-	public CuentaServiceImpl(CuentaDao dao) {
+	public CuentaServiceImpl(final CuentaDao dao) {
 		super(dao);
 	}
 
