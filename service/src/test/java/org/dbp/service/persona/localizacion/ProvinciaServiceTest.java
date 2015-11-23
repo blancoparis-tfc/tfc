@@ -2,9 +2,9 @@ package org.dbp.service.persona.localizacion;
 
 import static org.junit.Assert.assertEquals;
 
-import org.dbp.bom.personas.localizacion.Municipio;
+import org.dbp.bom.personas.localizacion.Provincia;
 import org.dbp.core.conf.TestConfiguracion;
-import org.dbp.service.personas.localizacion.MunicipioService;
+import org.dbp.service.personas.localizacion.ProvinciaService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,20 +18,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(classes = TestConfiguracion.class)
-public class MunicipioServiceTest {
+public class ProvinciaServiceTest {
 
-	@Autowired  private  MunicipioService service;
+	@Autowired private ProvinciaService service;
 	
-	@Test 
-	public void testObtenerMunicipio(){
-		final Municipio municipio=service.obtenerMunicipio("Segovia");
-		assertSegovia(municipio);
+	@Test
+	public void test001BuscarUnaProvincia(){
+		Provincia provincia = service.obtenerProvincia("Segovia");
+		// 40
+		assertEquals("El código esperado", new Integer(40), provincia.getId());
+		assertEquals("El nombre","Segovia",provincia.getNombre());
+		
 	}
-
-	private void assertSegovia(final Municipio municipio) {
-		assertEquals("nombre de municipio","Segovia",municipio.getMunicipio());
-		assertEquals("provincia","Segovia",municipio.getProvincia().getNombre());
-		assertEquals("Comunidad autonoma","Castilla y León",municipio.getProvincia().getComunidadAutonoma().getNombre());
-	}
-	
 }

@@ -19,7 +19,7 @@ public class Provincia implements Serializable{
 	private String nombre;
 	
 	@ManyToOne
-	@JoinColumn(name="comunidadId")
+	@JoinColumn(name="comunidadId",updatable=false,insertable=false)
 	private ComunidadAutonoma comunidadAutonoma;
 
 	public Integer getId() {
