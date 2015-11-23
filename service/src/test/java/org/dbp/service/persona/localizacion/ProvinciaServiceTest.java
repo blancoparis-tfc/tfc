@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +25,30 @@ public class ProvinciaServiceTest {
 	
 	@Test
 	public void test001BuscarUnaProvincia(){
-		Provincia provincia = service.obtenerProvincia("Segovia");
-		// 40
+		final Provincia provincia = service.obtenerProvincia("Segovia");
+		assertSegovia(provincia);
+	}
+
+	@Commit
+	@Test
+	public void test002ModificarProvincia(){
+		final Provincia provincia = service.obtenerProvincia("Segovia");
+		provincia.setNombre("perico");
+		provincia.setComunidadAutonoma(null);
+		service.actualizar(provincia);
+	}
+
+	@Test
+	public void test003AssertQueNoSeHaModificadoLaProvincia(){
+		final Provincia provincia = service.obtenerProvincia("Segovia");
+		assertSegovia(provincia);
+	}
+
+	
+	private void assertSegovia(final Provincia provincia) {
 		assertEquals("El código esperado", new Integer(40), provincia.getId());
 		assertEquals("El nombre","Segovia",provincia.getNombre());
-		
+		assertEquals(" comunidad ",new Long(7L), provincia.getComunidadAutonoma().getId());
 	}
+
 }
