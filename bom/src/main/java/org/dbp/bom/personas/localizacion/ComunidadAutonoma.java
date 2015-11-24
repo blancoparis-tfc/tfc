@@ -1,14 +1,18 @@
 package org.dbp.bom.personas.localizacion;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class ComunidadAutonoma {
+public class ComunidadAutonoma implements Serializable{
 
 	@Id
 	private Long id;
 
+	@Column(updatable=false,insertable=false)
 	private String nombre;
 
 	public Long getId() {

@@ -19,7 +19,9 @@
    <!-- Quitadas las reglas referidas a los comentarios  
    <rule ref="rulesets/java/comments.xml"/>
 	-->
-   <rule ref="rulesets/java/controversial.xml"/>
+   <rule ref="rulesets/java/controversial.xml">
+   	<exclude name="AtLeastOneConstructor"/>
+   </rule>
    <rule ref="rulesets/java/coupling.xml">
    	<exclude name="LawOfDemeter"/>
    </rule>
