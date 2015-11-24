@@ -1,3 +1,9 @@
+apply plugin: 'pmd'
+
+pmd {
+	  ruleSetFiles = files("ruleset.xml")
+}
+
 dependencies {
 	compile project(':bom')
 }
