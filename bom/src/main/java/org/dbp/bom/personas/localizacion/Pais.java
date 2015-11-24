@@ -17,15 +17,17 @@ import javax.persistence.Id;
 public class Pais implements Serializable{
 
 	@Id
-	@Column(length=2)
+	@Column(length=2,updatable=false,insertable=false)
 	private String idAlfa2;
 
-	@Column(length=3)
+	@Column(length=3,updatable=false,insertable=false)
 	private String codAlfa3;
-	@Column(length=3)
+	@Column(length=3,updatable=false,insertable=false)
 	private Integer codNumerico;  
-	
+
+	@Column(updatable=false,insertable=false)
 	private String nombreComun;
+	@Column(updatable=false,insertable=false)
 	private String nombreOficial;
 
 	public String getIdAlfa2() {
