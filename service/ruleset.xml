@@ -25,7 +25,9 @@
    <rule ref="rulesets/java/coupling.xml">
    	<exclude name="LawOfDemeter"/>
    </rule>
-   <rule ref="rulesets/java/design.xml"/>
+   <rule ref="rulesets/java/design.xml">
+   	<exclude name="NonStaticInitializer"/>
+   </rule>
    <rule ref="rulesets/java/empty.xml"/>
    <rule ref="rulesets/java/basic.xml"/>
    <rule ref="rulesets/java/finalizers.xml"/>
@@ -42,6 +44,7 @@
    <rule ref="rulesets/java/migrating.xml"/>
    <rule ref="rulesets/java/naming.xml">
    	<exclude name="GenericsNaming"/>
+   	<exclude name="LongVariable"/>
    </rule>
    <rule ref="rulesets/java/optimizations.xml"/>
    <rule ref="rulesets/plsql/dates.xml"/>

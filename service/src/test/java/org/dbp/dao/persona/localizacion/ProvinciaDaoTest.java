@@ -24,9 +24,9 @@ public class ProvinciaDaoTest {
 	
 	@Test
 	public void test001BuscarUnaProvincia(){
-		Provincia provincia = provinciaDao.obtenerProvincia("Segovia");
+		final Provincia provincia = provinciaDao.obtenerProvincia("Segovia");
 		// 40
-		assertEquals("El código esperado", new Integer(40), provincia.getId());
+		assertEquals("El código esperado", Integer.valueOf(40), provincia.getId());
 		assertEquals("El nombre","Segovia",provincia.getNombre());
 		
 	}

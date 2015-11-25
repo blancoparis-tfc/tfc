@@ -20,60 +20,60 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = TestConfiguracion.class)
 public class AsientosDaoTest {
 
-	@Autowired AsientosDao asientosDao;
+	@Autowired private AsientosDao asientosDao;
 	
 	@Test
 	public void testObtenerId(){
-		Asientos asiento= asientosDao.obtenerId(1L);
-		assertEquals("Esperamos el ID",new Long(1L),asiento.getId());
-		assertEquals("Esperamo la descripción","prueba1",asiento.getDescripcion());
+		final Asientos asiento= asientosDao.obtenerId(1L);
+		assertEquals("Esperamos el ID:",Long.valueOf(1L),asiento.getId());
+		assertEquals("Esperamo la descripción:","prueba1",asiento.getDescripcion());
 		assertEquals("Número de asientos",2,asiento.getLineas().size());
-		assertEquals("linea 1 Id",new Long(1L),asiento.getLineas().get(0).getId());
+		assertEquals("linea 1 Id",Long.valueOf(1L),asiento.getLineas().get(0).getId());
 		assertEquals("linea 1 Tipo",TipoMovimientoContable.H,asiento.getLineas().get(0).getTipoMovimientoContable());
-		assertEquals("linea 2 Id",new Long(2L),asiento.getLineas().get(1).getId());
+		assertEquals("linea 2 Id",Long.valueOf(2L),asiento.getLineas().get(1).getId());
 		assertEquals("linea 1 Tipo",TipoMovimientoContable.D,asiento.getLineas().get(1).getTipoMovimientoContable());
 	}
 	@Test
 	public void testObtenerTodos(){
-		List<Asientos> asientos = asientosDao.obtenerTodos();
+		final List<Asientos> asientos = asientosDao.obtenerTodos();
 		assertEquals("Se esperan n elementos",2,asientos.size());
-		assertEquals("Esperamos el ID",new Long(1L),asientos.get(0).getId());
-		assertEquals("Esperamo la descripción","prueba1",asientos.get(0).getDescripcion());
+		assertEquals("Esperamos el ID :",Long.valueOf(1L),asientos.get(0).getId());
+		assertEquals("Esperamo la descripción :","prueba1",asientos.get(0).getDescripcion());
 
-		assertEquals("Esperamos el ID",new Long(2L),asientos.get(1).getId());
-		assertEquals("Esperamo la descripción","prueba2",asientos.get(1).getDescripcion());
+		assertEquals("Esperamos el Id",Long.valueOf(2L),asientos.get(1).getId());
+		assertEquals("Esperamo la descripción ","prueba2",asientos.get(1).getDescripcion());
 	}
 	@Test
 	public void testEliminar(){
 		asientosDao.eliminar(asientosDao.obtenerId(1L));
 		assertNull("No esperamos encontrar el elemento 1", asientosDao.obtenerId(1L));
-		Asientos asiento=asientosDao.obtenerId(2L);
-		assertEquals("Esperamos el ID",new Long(2L),asiento.getId());
-		assertEquals("Esperamo la descripción","prueba2",asiento.getDescripcion());
+		final Asientos asiento=asientosDao.obtenerId(2L);
+		assertEquals("Esperamos el ID ",Long.valueOf(2L),asiento.getId());
+		assertEquals("Esperamo la descripción ","prueba2",asiento.getDescripcion());
 		asientosDao.eliminar(asientosDao.obtenerId(2L));
 		assertNull("No esperamos encontrar el elemento 2", asientosDao.obtenerId(2L));
 	}
 	
 	@Test
 	public void testCrear(){
-		Asientos asiento = new Asientos();
+		final Asientos asiento = new Asientos();
 		asiento.setDescripcion("david");
 		asientosDao.crear(asiento);
-		Long id=asiento.getId();
+		final Long identificador=asiento.getId();
 		assertEquals("Esperamos que tenemos el núevo elemento",3,asientosDao.obtenerTodos().size());
-		Asientos resultado=asientosDao.obtenerId(id);
-		assertEquals("Esperamos el ID",new Long(id),resultado.getId());
+		final Asientos resultado=asientosDao.obtenerId(identificador);
+		assertEquals("Esperamos el ID",identificador,resultado.getId());
 		assertEquals("Esperamo la descripción","david",resultado.getDescripcion());
 	}
 	@Test
 	public void testActualizar(){
 		Asientos asiento= asientosDao.obtenerId(1L);
-		assertEquals("Esperamos el ID",new Long(1L),asiento.getId());
+		assertEquals("Esperamos el ID",Long.valueOf(1L),asiento.getId());
 		assertEquals("Esperamo la descripción","prueba1",asiento.getDescripcion());
 		asiento.setDescripcion("perico");
 		asientosDao.actualizar(asiento);
 		asiento= asientosDao.obtenerId(1L);
-		assertEquals("Esperamos el ID",new Long(1L),asiento.getId());
+		assertEquals("Esperamos el ID",Long.valueOf(1L),asiento.getId());
 		assertEquals("Esperamo la descripción","perico",asiento.getDescripcion());
 	}
 	

@@ -21,18 +21,20 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = TestConfiguracion.class)
 public class ProvinciaServiceTest {
 
+	private static final String SEGOVIA = "Segovia";
 	@Autowired private ProvinciaService service;
 	
 	@Test
 	public void test001BuscarUnaProvincia(){
-		final Provincia provincia = service.obtenerProvincia("Segovia");
+		final Provincia provincia = service.obtenerProvincia(SEGOVIA);
 		assertSegovia(provincia);
 	}
 
 	@Commit
 	@Test
 	public void test002ModificarProvincia(){
-		final Provincia provincia = service.obtenerProvincia("Segovia");
+		final Provincia provincia = service.obtenerProvincia(SEGOVIA);
+		assertSegovia(provincia);
 		provincia.setNombre("perico");
 		provincia.setComunidadAutonoma(null);
 		service.actualizar(provincia);
@@ -40,15 +42,15 @@ public class ProvinciaServiceTest {
 
 	@Test
 	public void test003AssertQueNoSeHaModificadoLaProvincia(){
-		final Provincia provincia = service.obtenerProvincia("Segovia");
+		final Provincia provincia = service.obtenerProvincia(SEGOVIA);
 		assertSegovia(provincia);
 	}
 
 	
 	private void assertSegovia(final Provincia provincia) {
-		assertEquals("El código esperado", new Integer(40), provincia.getId());
-		assertEquals("El nombre","Segovia",provincia.getNombre());
-		assertEquals(" comunidad ",new Long(7L), provincia.getComunidadAutonoma().getId());
+		assertEquals("El código esperado", Integer.valueOf(40), provincia.getId());
+		assertEquals("El nombre",SEGOVIA,provincia.getNombre());
+		assertEquals(" comunidad ",Long.valueOf(7L), provincia.getComunidadAutonoma().getId());
 	}
 
 }

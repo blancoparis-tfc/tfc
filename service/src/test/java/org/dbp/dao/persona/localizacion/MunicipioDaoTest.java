@@ -1,6 +1,6 @@
 package org.dbp.dao.persona.localizacion;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.dbp.bom.personas.localizacion.Municipio;
 import org.dbp.core.conf.TestConfiguracion;
@@ -25,44 +25,46 @@ public class MunicipioDaoTest {
 	
 	@Test
 	public void test001ConsultarUnMunicipio(){
-		Municipio municipio=municipioDao.obtenerId(6024L);
+		final Municipio municipio=municipioDao.obtenerId(6024L);
 		assertSegovia(municipio);
 	}
 
 	@Commit
 	@Test
 	public void test002IntentamosModificarElNombre(){
-		Municipio municipio=municipioDao.obtenerId(6024L);
+		final Municipio municipio=municipioDao.obtenerId(6024L);
+		assertSegovia(municipio);
 		municipio.setMunicipio("Segovia2");
 		municipioDao.actualizar(municipio);
 	}
 	
 	@Test
 	public void test003ValidamosQueSegoviaNoSeHaModificado(){
-		Municipio municipio=municipioDao.obtenerId(6024L);
+		final Municipio municipio=municipioDao.obtenerId(6024L);
 		assertSegovia(municipio);
 	}
 	
 	@Commit
 	@Test
 	public void test004QuitamosLaProvincia(){
-		Municipio municipio=municipioDao.obtenerId(6024L);
+		final Municipio municipio=municipioDao.obtenerId(6024L);
+		assertNotNull("El municipio", municipio);
 		municipio.setProvincia(null);
 		municipioDao.actualizar(municipio);
 	}
 	
 	@Test
 	public void test005ValidamosQueNoSeHaQuitadoLaProvincia(){
-		Municipio municipio=municipioDao.obtenerId(6024L);
+		final Municipio municipio=municipioDao.obtenerId(6024L);
 		assertSegovia(municipio);
 	}
 	
 	@Test
 	public void test006BuscarPorNombre(){
-		Municipio municipio=municipioDao.obtenerMunicipio("Segovia");
+		final Municipio municipio=municipioDao.obtenerMunicipio("Segovia");
 		assertSegovia(municipio);
 	}
-	private void assertSegovia(Municipio municipio) {
+	private void assertSegovia(final Municipio municipio) {
 		assertEquals("nombre de municipio","Segovia",municipio.getMunicipio());
 		assertEquals("provincia","Segovia",municipio.getProvincia().getNombre());
 		assertEquals("Comunidad autonoma","Castilla y León",municipio.getProvincia().getComunidadAutonoma().getNombre());

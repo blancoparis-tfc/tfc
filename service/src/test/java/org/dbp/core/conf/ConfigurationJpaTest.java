@@ -1,6 +1,7 @@
 package org.dbp.core.conf;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,21 +26,21 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = TestConfiguracion.class)
 public class ConfigurationJpaTest {
 
-	@PersistenceContext EntityManager em;
+	@PersistenceContext private EntityManager entityManager;
 	
 	@Test
 	public void testRecuperarUnUsuario(){
-		Asientos asiento=em.find(Asientos.class, 1L);
-		assertEquals("El id del usuario 1",new Long(1L),asiento.getId());
+		final Asientos asiento=entityManager.find(Asientos.class, 1L);
+		assertEquals("El id del usuario 1",Long.valueOf(1L),asiento.getId());
 		assertEquals("Validamos la descripcion","prueba1",asiento.getDescripcion());
-		Pais pais=em.find(Pais.class, "AF");
-		System.out.println(pais);
-		ComunidadAutonoma comunidad = em.find(ComunidadAutonoma.class, 1L);
-		System.out.println(comunidad);
-		Provincia provincia = em.find(Provincia.class, 2);
-		System.out.println(provincia);
-		Municipio municipio=em.find(Municipio.class,1L);
-		System.out.println(municipio);
+		final Pais pais=entityManager.find(Pais.class, "AF");
+		assertNotNull("Obtener el pais",pais);
+		final ComunidadAutonoma comunidad = entityManager.find(ComunidadAutonoma.class, 1L);
+		assertNotNull("Obtener la comunidad",comunidad);
+		final Provincia provincia = entityManager.find(Provincia.class, 2);
+		assertNotNull("Obtener la provincia",provincia);
+		final Municipio municipio=entityManager.find(Municipio.class,1L);
+		assertNotNull("Obtener el municipio",municipio);
 	}
 	
 }
