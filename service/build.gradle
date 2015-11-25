@@ -1,8 +1,30 @@
 apply plugin: 'pmd'
+apply plugin: 'jacoco'
 
 pmd {
 	  ruleSetFiles = files("ruleset.xml")
 }
+jacocoTestReport {
+    reports {
+        xml {
+            enabled true // coveralls plugin depends on xml format report
+        }
+
+        html {
+            enabled true
+            destination "${buildDir}/jacocoHtml"
+        }
+    }
+
+    test {
+        jacoco {
+            destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+            classDumpFile = file("$buildDir/jacoco/classpathdumps")
+        }
+    }
+}
+
+check.dependsOn jacocoTestReport
 
 dependencies {
 	compile project(':bom')

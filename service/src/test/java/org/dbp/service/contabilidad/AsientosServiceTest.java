@@ -1,6 +1,7 @@
 package org.dbp.service.contabilidad;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import org.dbp.bom.contabilidad.LineasAsiento;
 import org.dbp.bom.contabilidad.enums.TipoMovimientoContable;
 import org.dbp.core.conf.TestConfiguracion;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -27,6 +29,8 @@ public class AsientosServiceTest {
 
 	@Autowired private AsientosService asientoService;
 	@Autowired private CuentaService cuentaService;
+	
+	private static Long id;
 	
 	@Test
 	public void test001Buscar(){
@@ -47,26 +51,28 @@ public class AsientosServiceTest {
 		linea.setCuenta(cuentaService.obtenerId("4000"));
 		asiento.getLineas().add(linea);
 		asientoService.crear(asiento);
-		System.out.println("eco");
+		id=asiento.getId();
+		System.out.println("eco" +asiento.getId());
 	}
-
+	
 	@Test
 	public void test003Recuperar(){
-		Asientos asiento = asientoService.obtenerId(1001L);
+		Asientos asiento = asientoService.obtenerId(id);
 		assertEquals("Revisar la descricpción","Asiento de prueba",asiento.getDescripcion());
 		assertEquals("Número de elementos",1,asiento.getLineas().size());
 		assertEquals("Linea de importe",1000L,asiento.getLineas().get(0).getImporte().intValue());
 		assertEquals("Concepto de la linea","Prueba",asiento.getLineas().get(0).getConcepto());
 	}
+	
 	@Commit
 	@Test
 	public void test004eliminar(){
-		asientoService.eliminar(asientoService.obtenerId(1001L));
+		asientoService.eliminar(asientoService.obtenerId(id));
 	}
 	
 	@Test
 	public void test005Recuperar(){
-		Asientos asiento = asientoService.obtenerId(1001L);
+		Asientos asiento = asientoService.obtenerId(id);
 		assertNull("No se espera el asiento por que ha sido borrado.",asiento);
 	}
 }

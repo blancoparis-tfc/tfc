@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan(basePackages = {"org.dbp.dao","org.dbp.service"})
+@ComponentScan(basePackages = {"org.dbp.dao","org.dbp.service","org.dbp.core.component"})
 @Import({TestJpaConfiguration.class})
 public class TestConfiguracion {
 

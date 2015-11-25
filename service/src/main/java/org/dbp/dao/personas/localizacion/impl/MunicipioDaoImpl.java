@@ -9,14 +9,18 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.dbp.bom.personas.localizacion.Municipio;
+import org.dbp.core.component.LocaleComponents;
 import org.dbp.core.dao.impl.GenericDaoImpl;
 import org.dbp.dao.personas.localizacion.MunicipioDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
 public class MunicipioDaoImpl extends GenericDaoImpl<Municipio,Long> implements MunicipioDao{
 
+	@Autowired private LocaleComponents localeComponents;
+	
 	@PersistenceContext private EntityManager entityManager;
 	
 	public MunicipioDaoImpl() {
@@ -28,7 +32,7 @@ public class MunicipioDaoImpl extends GenericDaoImpl<Municipio,Long> implements 
 		final CriteriaBuilder criteriaBuilder=entityManager.getCriteriaBuilder();
 		final CriteriaQuery<Municipio> criteria=criteriaBuilder.createQuery(getClazzE());
 		final Root<Municipio> from=criteria.from(getClazzE());
-		final Predicate condMunicipio= criteriaBuilder.upper(from.get("municipio")).in(nombre.toUpperCase());
+		final Predicate condMunicipio= criteriaBuilder.upper(from.get("municipio")).in(nombre.toUpperCase(localeComponents.getLocale()));
 		final TypedQuery<Municipio> query=entityManager.createQuery(criteria.select(from).where(condMunicipio));
 		return query.getSingleResult();
 	}
