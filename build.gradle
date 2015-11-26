@@ -2,6 +2,7 @@ allprojects {
   apply plugin: 'java'
   apply plugin: 'eclipse'
   apply plugin: 'project-report'
+  apply plugin: 'jdepend'
   group = 'org.dbp'
   version = '1.0'
 }
