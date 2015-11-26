@@ -10,16 +10,16 @@ import javax.persistence.Id;
 public class Cuenta implements Serializable {
 
 	@Id
-	private String cuenta;
+	private String numeroDeCuenta;
 
 	private String descripcion;
 
-	public String getCuenta() {
-		return cuenta;
+	public String getNumeroDeCuenta() {
+		return numeroDeCuenta;
 	}
 
-	public void setCuenta(String cuenta) {
-		this.cuenta = cuenta;
+	public void setNumeroDeCuenta(String cuenta) {
+		this.numeroDeCuenta = cuenta;
 	}
 
 	public String getDescripcion() {

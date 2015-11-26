@@ -1,4 +1,5 @@
 apply plugin: 'pmd'
+apply plugin: 'sonar-runner'
 pmd {
 	  ruleSetFiles = files("ruleset.xml")
 }

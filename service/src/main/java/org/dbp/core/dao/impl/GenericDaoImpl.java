@@ -29,23 +29,23 @@ public class GenericDaoImpl <E extends Serializable,Id> implements GenericDao<E,
 	public Class<E> getClazzE() {
 		return clazzE;
 	}
-
+	@Override
 	public E obtenerId(final Id identificador){
 		return entityManager.find(clazzE, identificador);
 	}
-
+	@Override
 	public void eliminar(final E entidad){
 		entityManager.remove(entidad);
 	}
-	
+	@Override
 	public void crear(final E entidad){
 		entityManager.persist(entidad);
 	}
-	
+	@Override
 	public E actualizar(final E actualizar){
 		return entityManager.merge(actualizar);
 	}
-	
+	@Override
 	public List<E> obtenerTodos(){
 		final CriteriaBuilder criteriaBuilde=entityManager.getCriteriaBuilder();
 		final CriteriaQuery<E> criteria=criteriaBuilde.createQuery(clazzE);

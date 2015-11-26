@@ -13,7 +13,6 @@ public class PaisServiceImpl extends GenericServiceImpl<Pais,String> implements 
 	@Autowired
 	public PaisServiceImpl(final PaisDao dao) {
 		super(dao);
-		// TODO Auto-generated constructor stub
 	}
 
 }
