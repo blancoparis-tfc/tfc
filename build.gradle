@@ -1,9 +1,15 @@
 allprojects {
   apply plugin: 'java'
   apply plugin: 'eclipse'
+  apply plugin: 'project-report'
   group = 'org.dbp'
   version = '1.0'
 }
+
+htmlDependencyReport {
+    projects = project.allprojects
+}
+
 subprojects{
   repositories {
     mavenCentral()
