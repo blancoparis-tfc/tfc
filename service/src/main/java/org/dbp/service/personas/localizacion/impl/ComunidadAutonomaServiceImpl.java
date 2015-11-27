@@ -5,9 +5,8 @@ import org.dbp.core.dao.impl.GenericServiceImpl;
 import org.dbp.dao.personas.localizacion.ComunidadAutonomaDao;
 import org.dbp.service.personas.localizacion.ComunidadAutonomaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-@Repository
+import org.springframework.stereotype.Service;
+@Service
 public class ComunidadAutonomaServiceImpl extends GenericServiceImpl<ComunidadAutonoma,Long> implements ComunidadAutonomaService {
 
 	@Autowired
