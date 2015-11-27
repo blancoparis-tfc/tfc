@@ -27,7 +27,7 @@ public class AsientosDaoTest {
 		final Asientos asiento= asientosDao.obtenerId(1L);
 		assertEquals("Esperamos el ID:",Long.valueOf(1L),asiento.getId());
 		assertEquals("Esperamo la descripción:","prueba1",asiento.getDescripcion());
-		assertEquals("Número de asientos",2,asiento.getLineas().size());
+		assertEquals("Número de lineasr",2,asiento.getLineas().size());
 		assertEquals("linea 1 Id",Long.valueOf(1L),asiento.getLineas().get(0).getId());
 		assertEquals("linea 1 Tipo",TipoMovimientoContable.H,asiento.getLineas().get(0).getTipoMovimientoContable());
 		assertEquals("linea 2 Id",Long.valueOf(2L),asiento.getLineas().get(1).getId());

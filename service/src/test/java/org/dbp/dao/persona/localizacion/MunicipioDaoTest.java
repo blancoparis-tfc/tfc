@@ -1,6 +1,7 @@
 package org.dbp.dao.persona.localizacion;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.dbp.bom.personas.localizacion.Municipio;
 import org.dbp.core.conf.TestConfiguracion;

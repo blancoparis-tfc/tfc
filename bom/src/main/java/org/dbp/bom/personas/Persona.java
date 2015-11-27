@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import org.dbp.bom.personas.enums.TipoDeIdentificadorFiscal;
 import org.dbp.bom.personas.localizacion.Municipio;
 import org.dbp.bom.personas.localizacion.Pais;
-import org.dbp.bom.personas.localizacion.Provincia;
 
 @SuppressWarnings("serial")
 @Entity
@@ -42,8 +41,6 @@ public class Persona implements Serializable{
 	@ManyToOne
 	private Pais pais;
 	
-	@ManyToOne
-	private Provincia provincia;
 	
 	@ManyToOne	
 	private Municipio municipio;
@@ -97,13 +94,6 @@ public class Persona implements Serializable{
 		this.pais = pais;
 	}
 
-	public Provincia getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(Provincia provincia) {
-		this.provincia = provincia;
-	}
 
 	public Municipio getMunicipio() {
 		return municipio;

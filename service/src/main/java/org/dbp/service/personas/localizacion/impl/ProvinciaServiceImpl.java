@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProvinciaServiceImpl extends GenericServiceImpl<Provincia,Long> implements ProvinciaService{
 	
-	private ProvinciaDao dao;
+	private final ProvinciaDao dao;
 	
 	@Autowired
 	public ProvinciaServiceImpl(final ProvinciaDao dao) {

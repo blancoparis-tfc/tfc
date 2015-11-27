@@ -1,6 +1,6 @@
 package org.dbp.service.persona.localizacion;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.dbp.bom.personas.localizacion.ComunidadAutonoma;
 import org.dbp.core.conf.TestConfiguracion;
