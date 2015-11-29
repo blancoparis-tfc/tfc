@@ -2,6 +2,7 @@ package org.dbp.bom.personas;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -15,13 +16,11 @@ public class PersonaJuridica extends Persona {
 
 	private String nombreSocial;
 	private String nombreComercial;
-
-	
 	
 	@ManyToOne
 	private PersonaJuridica empresaMaestra;
 	
-	@OneToMany
+	@OneToMany(orphanRemoval=true,cascade={CascadeType.ALL})
 	private List<DelegacionComercial> delegacionesComerciales;
 
 	public List<DelegacionComercial> getDelegacionesComerciales() {

@@ -2,6 +2,7 @@ package org.dbp.bom.personas;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,10 +23,10 @@ public class DelegacionComercial implements Serializable{
 	
 	private String nombre;
 	
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
 	private Direccion direccion;
 	
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
 	private DatosDeContacto datosDeContacto;
 
 	public Long getId() {
