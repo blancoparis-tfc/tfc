@@ -32,6 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = TestConfiguracion.class)
 public class PersonaDaoTest {
 
+	private static final String DIRECCION = "C\\ pez";
+	private static final String IDENTIFICADOR_PRUEBA = "1111111F";
 	@Autowired private PersonaDao personaDao;
 	@Autowired private PaisService paisService;
 	@Autowired private MunicipioService municipioService;
@@ -52,7 +54,7 @@ public class PersonaDaoTest {
 
 	private Persona datosBasicosDeLaCreacionDeLaPersona() {
 		final Persona persona = new Persona();
-		persona.setIdentificadorFiscal("1111111F");
+		persona.setIdentificadorFiscal(IDENTIFICADOR_PRUEBA);
 		persona.setTipoIdentificadorFiscal(TipoDeIdentificadorFiscal.DNI);
 		persona.setMunicipio(municipioService.obtenerId(1L));
 		persona.setPais(paisService.obtenerId("ES"));
@@ -63,7 +65,7 @@ public class PersonaDaoTest {
 	@Test
 	public void test002AssertElUsuarioEliminarlo(){
 		final Persona persona = personaDao.obtenerId(idDelPersona);
-		assertEquals("IdentificadorFiscal","1111111F",persona.getIdentificadorFiscal());
+		assertEquals("IdentificadorFiscal",IDENTIFICADOR_PRUEBA,persona.getIdentificadorFiscal());
 		assertEquals("El tipo de ident4ifciador fiscal",TipoDeIdentificadorFiscal.DNI,persona.getTipoIdentificadorFiscal());
 		assertTrue("No esperamos los datos de contacto",persona.getDatosDeContacto().isEmpty());
 		assertTrue("No esperamos las dirrecciones",persona.getDireccion().isEmpty());
@@ -89,7 +91,7 @@ public class PersonaDaoTest {
 		datoDeContacto.setTelefono("913115512");
 		datoDeContacto.setDireccionDeCorreo("prueba@gmail.com");
 		datoDeContacto.setDireccion(new Direccion());
-		datoDeContacto.getDireccion().setDireccion("C\\ pez");
+		datoDeContacto.getDireccion().setDireccion(DIRECCION);
 		datosDeContacto.add(datoDeContacto);
 		persona.setDatosDeContacto(datosDeContacto);
 		personaDao.crear(persona);
@@ -100,7 +102,7 @@ public class PersonaDaoTest {
 	@Test
 	public void test005AssertLosDatosDeConctacto(){
 		final Persona persona = personaDao.obtenerId(idDelPersona);
-		assertEquals("IdentificadorFiscal","1111111F",persona.getIdentificadorFiscal());
+		assertEquals("IdentificadorFiscal",IDENTIFICADOR_PRUEBA,persona.getIdentificadorFiscal());
 		assertEquals("El tipo de ident4ifciador fiscal",TipoDeIdentificadorFiscal.DNI,persona.getTipoIdentificadorFiscal());
 		assertTrue("No esperamos las dirrecciones",persona.getDireccion().isEmpty());
 		assertEquals("El pais","ES",persona.getPais().getIdAlfa2());
@@ -110,14 +112,14 @@ public class PersonaDaoTest {
 		assertEquals("El nombre del contacto","Perico el de los Palotes",datoDeContacto.getNombre());
 		assertEquals("Telefono","913115512",datoDeContacto.getTelefono());
 		assertEquals("Direccion de correo","prueba@gmail.com",datoDeContacto.getDireccionDeCorreo());
-		assertEquals("Direccion","C\\ pez",datoDeContacto.getDireccion().getDireccion());
+		assertEquals("Direccion",DIRECCION,datoDeContacto.getDireccion().getDireccion());
 	}
 	@Commit
 	@Test
 	public void test006AddContacto(){
 		final Persona persona = personaDao.obtenerId(idDelPersona);
 		final Direccion direccion = new Direccion();
-		direccion.setDireccion("C\\ pez");
+		direccion.setDireccion(DIRECCION);
 		persona.getDireccion().add(direccion);
 		personaDao.actualizar(persona);
 		assertEquals("Los datos de la persona",1,persona.getDireccion().size());
@@ -126,7 +128,7 @@ public class PersonaDaoTest {
 	@Test
 	public void test007AsssertConElContacto(){
 		final Persona persona = personaDao.obtenerId(idDelPersona);
-		assertEquals("IdentificadorFiscal","1111111F",persona.getIdentificadorFiscal());
+		assertEquals("IdentificadorFiscal",IDENTIFICADOR_PRUEBA,persona.getIdentificadorFiscal());
 		assertEquals("El tipo de ident4ifciador fiscal",TipoDeIdentificadorFiscal.DNI,persona.getTipoIdentificadorFiscal());
 		assertEquals("El pais","ES",persona.getPais().getIdAlfa2());
 		assertEquals("El municipio",Long.valueOf(1L),persona.getMunicipio().getId());
@@ -135,8 +137,8 @@ public class PersonaDaoTest {
 		assertEquals("El nombre del contacto","Perico el de los Palotes",datoDeContacto.getNombre());
 		assertEquals("Telefono","913115512",datoDeContacto.getTelefono());
 		assertEquals("Direccion de correo","prueba@gmail.com",datoDeContacto.getDireccionDeCorreo());
-		assertEquals("Direccion","C\\ pez",datoDeContacto.getDireccion().getDireccion());
-		assertEquals("Direccion","C\\ pez",persona.getDireccion().stream().findAny().get().getDireccion());
+		assertEquals("Direccion",DIRECCION,datoDeContacto.getDireccion().getDireccion());
+		assertEquals("Direccion",DIRECCION,persona.getDireccion().stream().findAny().get().getDireccion());
 		personaDao.eliminar(persona);
 	}
 

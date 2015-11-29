@@ -19,7 +19,6 @@ import org.dbp.dao.personas.PersonaJuridicaDao;
 import org.dbp.service.personas.localizacion.MunicipioService;
 import org.dbp.service.personas.localizacion.PaisService;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -33,7 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(classes = TestConfiguracion.class)
-public class PersonaJuridicaDaoTest {
+//@SuppressWarnings("PMD.TooManyMethods")
+public class PersonaJuridicaDaoTest { //NOPMD
 
 	private static final String DIRECCION_PRUEBA = "C\\ pez";
 	@Autowired private PersonaJuridicaDao dao;
