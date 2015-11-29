@@ -20,6 +20,9 @@ public class PersonaJuridica extends Persona {
 	@ManyToOne
 	private PersonaJuridica empresaMaestra;
 	
+	@OneToMany(mappedBy="empresaMaestra",cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	private List<PersonaJuridica> subGrupo;
+	
 	@OneToMany(orphanRemoval=true,cascade={CascadeType.ALL})
 	private List<DelegacionComercial> delegacionesComerciales;
 
@@ -49,6 +52,13 @@ public class PersonaJuridica extends Persona {
 	public void setNombreComercial(String nombreComercial) {
 		this.nombreComercial = nombreComercial;
 	}
+	public List<PersonaJuridica> getSubGrupo() {
+		return subGrupo;
+	}
+	public void setSubGrupo(List<PersonaJuridica> subGrupo) {
+		this.subGrupo = subGrupo;
+	}
+	
 	
 	
 }
