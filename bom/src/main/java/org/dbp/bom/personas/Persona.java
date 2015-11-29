@@ -4,6 +4,7 @@ package org.dbp.bom.personas;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,10 +33,10 @@ public class Persona implements Serializable{
 	@Column(nullable=false)
 	private String identificadorFiscal;
 	
-	@OneToMany
+	@OneToMany(orphanRemoval=true,cascade={CascadeType.ALL})
 	private Set<Direccion> direccion;
 	
-	@OneToMany
+	@OneToMany(orphanRemoval=true,cascade={CascadeType.ALL})
 	private Set<DatosDeContacto> datosDeContacto;
 	
 	@ManyToOne

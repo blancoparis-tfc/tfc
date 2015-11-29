@@ -2,6 +2,7 @@ package org.dbp.bom.personas;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ public class DatosDeContacto implements Serializable{
 	
 	private String telefono;
 	private String nombre;
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
 	private Direccion direccion;
 	
 	private String direccionDeCorreo;
